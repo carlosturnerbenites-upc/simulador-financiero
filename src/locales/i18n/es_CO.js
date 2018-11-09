@@ -6,13 +6,6 @@ const es = {
     valueToPay:{
       label: "¿Cuánto es el valor que deseas prestar? ($)",
     },
-    typeInterestRate:{
-      label: "¿Con qué tipo de tasa quieres tu préstamo?" ,
-      options: {
-        fixed: 'Fijo',
-        variant: 'Variante'
-      }
-    },
     buttons: {
       calc: 'Calcular'
     },
@@ -24,10 +17,7 @@ const es = {
       valueToPay: {
         min: 'El campo no cumple con el valor mínimo $1,000,000.00',
         max: 'El campo no cumple con el valor máximo $5,000,000,000.00'
-      },
-      typeInterestRate: {
-        enum: 'Seleccione un Tipo Valido.'
-      },
+      }
     }
   }
 }
