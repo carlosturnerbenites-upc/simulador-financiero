@@ -2,10 +2,18 @@
   <div id="app">
 <Layout>
   <Header>
-    <h1>Banco</h1>
+    <Menu mode="horizontal" theme="dark" active-name="1">
+        <div class="layout-logo"></div>
+        <div class="layout-nav">
+            <MenuItem name="4">
+                <Icon type="ios-paper"></Icon>
+                <span></span>
+            </MenuItem>
+        </div>
+    </Menu>
   </Header>
   <!--<Sider></Sider>-->
-  <Content>
+  <Content class="content">
     <Layout>
       <Row>
         <Col span="12">
@@ -36,7 +44,7 @@
     </Row>
     <Row>
       <Col>
-        <Table stripe :columns="columns" :data="data"></Table>
+        <Table :loading="loading" height="200" stripe :columns="columns" :data="data"></Table>
       </Col>
     </Row>
 
@@ -48,56 +56,63 @@
 </template>
 
 <script>
+
+import Simulator from '@/Simulator'
+import Formatter from '@/Formatter'
+
 export default {
   name: 'app',
   data () {
       return {
+          loading: false,
+          simulator: new Simulator(),
+          formatter: new Formatter(),
           nameForm: 'form',
           form: {
-              term: 37, // '',
-              valueToPay: 1200000, // '',
-              typeInterestRate: 'fixed'
+              term: 37,
+              valueToPay: 20000000,
+              typeInterestRate: 'fixed',
+              interestRate: 5
           },
           rules: {
               term: [
-                  // { required: true, message: 'Please fill in the term name', trigger: 'blur' },
-                  { type: 'number', min: 36, message: 'El campo no cumple con el valor mínimo 36', trigger: 'blur' },
-                  { type: 'number', max: 120, message: 'El campo no cumple con el valor máximo 120', trigger: 'blur' }
+                  { type: 'number', min: 36, message: this.$t('form.rules.term.min'), trigger: 'blur' },
+                  { type: 'number', max: 120, message: this.$t('form.rules.term.max'), trigger: 'blur' }
               ],
               valueToPay: [
-                  // { required: true, message: 'Please fill in the valueToPay.', trigger: 'blur' },
-                  { type: 'number', min: 1000000, message: 'El campo no cumple con el valor mínimo $1,000,000.00', trigger: 'blur' },
-                  { type: 'number', max: 5000000000, message: 'El campo no cumple con el valor máximo $5,000,000,000.00', trigger: 'blur' }
+                  { type: 'number', min: 1000000, message: this.$t('form.rules.valueToPay.min'), trigger: 'blur' },
+                  { type: 'number', max: 5000000000, message: this.$t('form.rules.valueToPay.max'), trigger: 'blur' }
               ],
               typeInterestRate: [
-                  // { required: true, message: 'Please fill in the valueToPay.', trigger: 'change' },
-                  { type: "enum", enum: ['fixed', 'variant'], trigger: 'change' }
+                  { type: "enum", enum: ['fixed', 'variant'], message: this.$t('form.rules.typeInterestRate.enum'), trigger: 'change' }
               ]
           },
           columns: [
               {
-                title: '# Cuota',
-                key: ''
+                title: 'index',
+                key: 'index',
+                width: 70
               },
               {
-                title: 'Tasa Interés',
-                key: ''
+                title: 'interes',
+                key: 'interes',
+                width: 70
               },
               {
-                title: 'Valor Interés',
-                key: ''
+                title: 'Valor Intereses',
+                key: 'valorIntereses'
               },
               {
-                title: 'Abono Capital',
-                key: ''
+                title: 'Valor Cuota',
+                key: 'valorCuota'
               },
               {
-                title: 'Couta con interes',
-                key: ''
+                title: 'Valor Base',
+                key: 'valorBase'
               },
               {
                 title: 'Saldo',
-                key: ''
+                key: 'balance'
               }
           ],
           data: []
@@ -107,6 +122,31 @@ export default {
       validateForm(name) {
           this.$refs[this.nameForm].validate((valid) => {
               if (valid) {
+                  this.loading = true
+                let responses = []
+
+                let valueToPay = this.form.valueToPay
+                for(let index = this.form.term; index > 0; index--) {
+                    let response = this.simulator.calculateInstalments(
+                        valueToPay,
+                        index,
+                        this.form.interestRate
+                    )
+                    response.index = this.form.term - index
+                    responses.push(response)
+
+                    valueToPay = response.balance
+                }
+                this.data = responses.map(response => ({
+                    index: response.index,
+                    interes: `${response.interes} %`,
+                    valorIntereses: this.formatter.format(response.valorIntereses),
+                    valorCuota: this.formatter.format(response.valorCuota),
+                    valorBase: this.formatter.format(response.valorBase),
+                    balance: this.formatter.format(response.balance),
+                }))
+
+                this.loading = false
               } else {
                   this.$Message.error('Verifique los valores.');
               }
@@ -117,4 +157,32 @@ export default {
 </script>
 
 <style lang="scss">
+.content {
+    padding: 0px 50px
+}
+.layout{
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.layout-logo{
+    width: 100px;
+    height: 30px;
+    background: #5b6270;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    top: 15px;
+    left: 20px;
+}
+.layout-nav{
+    width: 420px;
+    margin: 0 auto;
+    margin-right: 20px;
+}
+.layout-footer-center{
+    text-align: center;
+}
 </style>

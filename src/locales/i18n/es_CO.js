@@ -15,6 +15,19 @@ const es = {
     },
     buttons: {
       calc: 'Calcular'
+    },
+    rules: {
+      term: {
+        min: 'El campo no cumple con el valor mínimo 36',
+        max: 'El campo no cumple con el valor máximo 120'
+      },
+      valueToPay: {
+        min: 'El campo no cumple con el valor mínimo $1,000,000.00',
+        max: 'El campo no cumple con el valor máximo $5,000,000,000.00'
+      },
+      typeInterestRate: {
+        enum: 'Seleccione un Tipo Valido.'
+      },
     }
   }
 }
