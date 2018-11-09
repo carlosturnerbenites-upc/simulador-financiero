@@ -42,6 +42,18 @@
           </Form>
         </Col>
         <Col span="12">
+            <p v-if="simulation.totalInterest">
+                totalInterest: {{this.formatter.format(simulation.totalInterest)}}
+            </p>
+            <p v-if="simulation.totalInstalments">
+                totalInstalments: {{this.formatter.format(simulation.totalInstalments)}}
+            </p>
+            <p v-if="simulation.sumInterest">
+                sumInterest: {{this.formatter.format(simulation.sumInterest)}}
+            </p>
+            <p v-if="simulation.interesPromedio">
+                interesPromedio: {{this.formatter.format(simulation.interesPromedio)}}
+            </p>
         </Col>
     </Row>
     <Row>
@@ -49,6 +61,7 @@
         <Table :loading="loading" height="300" stripe :columns="columns" :data="data"></Table>
       </Col>
     </Row>
+    <canvas id="myChart" width="400" height="400"></canvas>
 
     </Layout>
   </Content>
@@ -62,6 +75,7 @@
 import Simulator from '@/Simulator'
 import Formatter from '@/Formatter'
 import data from '@/history.json'
+import Chart from 'chart.js'
 
 const history = data.map(item => ({
     date: item.date,
@@ -80,6 +94,12 @@ export default {
           history,
           loading: false,
           simulator: new Simulator(),
+          simulation: {
+            totalInterest: null,
+            totalInstalments: null,
+            sumInterest: null,
+            interesPromedio: null
+          },
           formatter: new Formatter(),
           nameForm: 'form',
           form: {
@@ -113,13 +133,13 @@ export default {
                 title: 'Valor Intereses',
                 key: 'valorIntereses'
               },
+            {
+            title: 'Abono a Capital',
+            key: 'valorBase'
+            },
               {
-                title: 'Valor Cuota',
+                title: 'Cuota con Interes',
                 key: 'valorCuota'
-              },
-              {
-                title: 'Valor Base',
-                key: 'valorBase'
               },
               {
                 title: 'Saldo',
@@ -130,6 +150,69 @@ export default {
       }
   },
   methods: {
+      draw (term, payToInstalments, payToInterest) {
+          let labels = []
+        for (let index = 1; index <= term; index++) {
+            labels.push(index)
+        }
+        let ctx = document.getElementById('myChart').getContext('2d');
+
+        let options = {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Value'
+                    }
+                }]
+            }
+        }
+
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: 'Couta',
+                        fill: false,
+                        backgroundColor: 'green',
+                        borderColor: 'green',
+                        data: payToInstalments
+                    },
+                    {
+                        label: 'Interes',
+                        fill: false,
+                        backgroundColor: 'red',
+                        borderColor: 'red',
+                        data: payToInterest
+                    }
+                ]
+            },
+            options: options
+        });
+      },
       validateForm(name) {
           this.$refs[this.nameForm].validate((valid) => {
             let year = this.form.date.getFullYear()
@@ -137,7 +220,6 @@ export default {
             let day =  this.form.date.getDate()
 
             let object = history.find(h => h.year === year && h.month === month && h.day === day)
-            console.log('object', object)
             if (object) {
                 this.form.interestRate = object.value
             } else {
@@ -155,17 +237,41 @@ export default {
                 let responses = []
 
                 let valueToPay = this.form.valueToPay
+
+                let totalInterest = 0
+                let totalInstalments = 0
+                let sumInterest = 0
+
+                let payToInstalments = new Array(this.form.term)
+                let payToInterest = new Array(this.form.term)
+
                 for(let index = this.form.term; index > 0; index--) {
                     let response = this.simulator.calculateInstalments(
                         valueToPay,
                         index,
                         this.form.interestRate
                     )
+
+                    payToInstalments[(this.form.term - index)] = response.valorBase
+                    payToInterest[(this.form.term - index)] = response.valorIntereses
+
                     response.index = (this.form.term - index) + 1
                     responses.push(response)
 
+                    totalInterest += response.valorIntereses
+                    totalInstalments += response.valorCuota
+                    sumInterest += response.interes
+
                     valueToPay = response.balance
                 }
+
+                let interesPromedio = sumInterest / this.form.term;
+
+                this.simulation.totalInterest = totalInterest
+                this.simulation.totalInstalments = totalInstalments
+                this.simulation.sumInterest = sumInterest
+                this.simulation.interesPromedio = interesPromedio
+
                 let data = responses.map(response => ({
                     index: response.index,
                     interes: `${response.interes} %`,
@@ -187,6 +293,8 @@ export default {
                 this.data = data
 
                 this.loading = false
+
+                this.draw(this.form.term, payToInstalments, payToInterest)
               } else {
                   this.$Message.error('Verifique los valores.');
               }

@@ -21,6 +21,7 @@ export default class Simulator {
   }
 
   calculateInstalments (valueToPay, term, interestRate) {
+    interestRate = 5
     let interest = this.round(interestRate, 2);
     let factor_valor_presente = 1 / (1 + (interest / 100));
     let valorIntereses = valueToPay * (interest / 100);
