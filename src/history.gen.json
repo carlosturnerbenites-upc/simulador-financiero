@@ -1,0 +1,352 @@
+[
+  {
+    "year": 2013,
+    "value": 4,
+    "initialMonth": 1,
+    "endMonth": 3
+  },
+  {
+    "year": 2013,
+    "value": 4.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.01487700419166238,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2013,
+    "value": 4,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.8401878611531002,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2013,
+    "value": 4.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.24522238636641558,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2014,
+    "value": 5,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.36765933606934853,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2014,
+    "value": 4.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.8613204007488555,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2014,
+    "value": 5,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.4410590902682783,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2014,
+    "value": 5.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.6171106835607318,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2015,
+    "value": 5,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.8119139243789291,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2015,
+    "value": 4.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.8259670887130173,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2015,
+    "value": 5,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.6199423229373042,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2015,
+    "value": 5.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.6179581797371354,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2016,
+    "value": 5,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.9624633804749021,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2016,
+    "value": 5.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.08338871385674795,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2016,
+    "value": 6,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.2226157882189166,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2016,
+    "value": 5.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.8691849412848742,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2017,
+    "value": 6,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.09271652100198757,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2017,
+    "value": 6.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.31650997263893244,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2017,
+    "value": 7,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.23098075372400095,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2017,
+    "value": 7.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.35114127961731456,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2018,
+    "value": 8,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.020890478408918334,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2018,
+    "value": 7.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.886748815720501,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2018,
+    "value": 8,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.46748252246075706,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2018,
+    "value": 7.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.9781057637907993,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2019,
+    "value": 8,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.2507607827123204,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2019,
+    "value": 8.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.340399137079763,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2019,
+    "value": 9,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.526397638534946,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2019,
+    "value": 9.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.10285771751968298,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 9,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.7410853016488712,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2020,
+    "value": 8.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.8177183045678658,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2020,
+    "value": 9,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.088423142556312,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 9.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.31910753629712274,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 9,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.9413251617869682,
+    "changeRate": -0.5
+  },
+  {
+    "year": 2021,
+    "value": 9.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.4502797610611815,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 10,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.33093883914612454,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 10.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.6297189887726145,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 11,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.1816438873376489,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 11.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.3937223365496485,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 12,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.05050968086920404,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2020,
+    "value": 12.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.33570499274377585,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 13,
+    "initialMonth": 1,
+    "endMonth": 3,
+    "random": 0.2985248562196492,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 13.5,
+    "initialMonth": 4,
+    "endMonth": 6,
+    "random": 0.2178519113298616,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 14,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.08010603754162848,
+    "changeRate": 0.5
+  },
+  {
+    "year": 2021,
+    "value": 14.5,
+    "initialMonth": 10,
+    "endMonth": 12,
+    "random": 0.06948768046266429,
+    "changeRate": 0.5
+  }
+]
