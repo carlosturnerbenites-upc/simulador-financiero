@@ -1,87 +1,85 @@
 <template>
-  <div id="app">
-<Layout>
-  <Header>
-    <Menu mode="horizontal" theme="dark" active-name="1">
-        <div class="layout-logo">
-            Simulador de Crédito de libre Inversión
-        </div>
-    </Menu>
-  </Header>
-  <!--<Sider></Sider>-->
-  <Content class="content">
-    <Layout>
-      <Row>
-        <Col span="12">
-          <Form ref="form" :model="form" :rules="rules" >
-            <FormItem prop="term" :label="$t('form.term.label')">
-                <Input type="text" v-model.number="form.term">
-                    <Icon type="ios-calendar" slot="prepend"></Icon>
-                </Input>
-            </FormItem>
-            <FormItem prop="valueToPay" :label="$t('form.valueToPay.label')">
-                <Input type="text" v-model.number="form.valueToPay">
-                    <Icon type="ios-cash" slot="prepend"></Icon>
-                </Input>
-            </FormItem>
-            <FormItem prop="valueToPay" :label="$t('form.valueToPay.label')">
-                <DatePicker
-                    class="d-block"
-                    type="date"
-                    v-model="form.date"
-                    @on-change="changeDate"
-                ></DatePicker>
-            </FormItem>
-            <FormItem>
-                <label> Tipo de Tasa: <b>Tasa Fija</b> </label>
-                <br>
-                <label> Tasa de Interes: <b>{{form.interestRate}} %</b> </label>
-
-            </FormItem>
-            <FormItem>
-                <Button type="primary" @click="validateForm()">{{$t('form.buttons.calc')}}</Button>
-            </FormItem>
-          </Form>
-        </Col>
-        <Col span="12">
-            <div style="width: 400px; margin: 0 auto">
-                <canvas id="histogram" width="400" height="400"></canvas>
-            </div>
-            <!-- v-if="simulation.totalInterest">
-                Interes Total: {{this.formatter.format(simulation.totalInterest)}}
-            </p>
-            <p v-if="simulation.totalInstalments">
-                Total Cuotas: {{this.formatter.format(simulation.totalInstalments)}}
-            </p>
-            <p v-if="simulation.sumInterest">
-                Sumatoria de Interes: {{this.formatter.format(simulation.sumInterest)}}
-            </p>
-            <p v-if="simulation.interesPromedio">
-                Tasa de Interes Promedio : {{this.formatter.format(simulation.interesPromedio)}}
-            </p-->
-        </Col>
-    </Row>
-    <Row>
-        <Tabs>
-            <TabPane label="Tabla">
-                <Table :loading="loading" height="300" stripe :columns="columns" :data="data"></Table>
-            </TabPane>
-            <TabPane label="Histograma de Interese">
-                <div style="width: 600px; margin: 0 auto">
-                    <canvas id="history" width="400" height="400"></canvas>
-                </div>
-            </TabPane>
-        </Tabs>
-      <Col>
-      </Col>
-    </Row>
-    </Layout>
-  </Content>
-  <Footer>
-      <label>Basado en el simulador de Grupo Bancolombia</label>
-  </Footer>
-</Layout>
-  </div>
+    <div id="app">
+        <Layout>
+            <Header>
+                <Menu mode="horizontal" theme="dark" active-name="1">
+                    <div class="layout-logo">
+                        Simulador de Crédito de libre Inversión
+                    </div>
+                </Menu>
+            </Header>
+            <!--<Sider></Sider>-->
+            <Content class="content">
+                <Layout>
+                    <Row>
+                        <Col span="12">
+                            <Form ref="form" :model="form" :rules="rules" >
+                                <FormItem prop="term" :label="$t('form.term.label')">
+                                    <Input type="text" v-model.number="form.term">
+                                        <Icon type="ios-calendar" slot="prepend"></Icon>
+                                    </Input>
+                                </FormItem>
+                                <FormItem prop="valueToPay" :label="$t('form.valueToPay.label')">
+                                    <Input type="text" v-model.number="form.valueToPay">
+                                        <Icon type="ios-cash" slot="prepend"></Icon>
+                                    </Input>
+                                </FormItem>
+                                <FormItem prop="valueToPay" :label="$t('form.valueToPay.label')">
+                                    <DatePicker
+                                        class="d-block"
+                                        type="date"
+                                        v-model="form.date"
+                                        @on-change="changeDate"
+                                    ></DatePicker>
+                                </FormItem>
+                                <FormItem>
+                                    <label> Tipo de Tasa: <b>Tasa Fija</b> </label>
+                                    <br>
+                                    <label> Tasa de Interes: <b>{{form.interestRate}} %</b> </label>
+                                </FormItem>
+                                <FormItem>
+                                    <Button type="primary" @click="validateForm()">{{$t('form.buttons.calc')}}</Button>
+                                </FormItem>
+                            </Form>
+                        </Col>
+                        <Col span="12">
+                            <div style="width: 400px; margin: 0 auto">
+                                <canvas id="histogram" width="400" height="400"></canvas>
+                            </div>
+                            <!-- v-if="simulation.totalInterest">
+                                Interes Total: {{this.formatter.format(simulation.totalInterest)}}
+                            </p>
+                            <p v-if="simulation.totalInstalments">
+                                Total Cuotas: {{this.formatter.format(simulation.totalInstalments)}}
+                            </p>
+                            <p v-if="simulation.sumInterest">
+                                Sumatoria de Interes: {{this.formatter.format(simulation.sumInterest)}}
+                            </p>
+                            <p v-if="simulation.interesPromedio">
+                                Tasa de Interes Promedio : {{this.formatter.format(simulation.interesPromedio)}}
+                            </p-->
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Tabs>
+                            <TabPane label="Tabla">
+                                <Table :loading="loading" height="300" stripe :columns="columns" :data="data"></Table>
+                            </TabPane>
+                            <TabPane label="Histograma de Intereses">
+                                <div style="width: 600px; margin: 0 auto">
+                                    <canvas id="history" width="400" height="400"></canvas>
+                                </div>
+                            </TabPane>
+                        </Tabs>
+                        <!--Col></Col-->
+                    </Row>
+                </Layout>
+            </Content>
+            <Footer class="footer">
+                <label>Basado en el simulador de Grupo Bancolombia</label>
+            </Footer>
+        </Layout>
+    </div>
 </template>
 
 <script>
@@ -386,6 +384,12 @@ export default {
 </script>
 
 <style lang="scss">
+    .footer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+    }
     .d-block {
         display: block;
     }

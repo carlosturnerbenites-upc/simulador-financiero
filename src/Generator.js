@@ -1,6 +1,9 @@
 
+import randoms from '@/random.json'
+
 export default class Generator {
   constructor () {
+    this.indexRandom = 0
     /*
     this.rateChange = [
       {
@@ -343,7 +346,11 @@ export default class Generator {
       ]
     }
   }
-
+  getRandom() {
+    let n = randoms[this.indexRandom]
+    this.indexRandom += 1
+    return n
+  }
   getRateChange (n) {
     console.log(n)
     let range = this.rateChange.find(range => {
@@ -364,7 +371,7 @@ export default class Generator {
       if (index === 0) {
         item.value = history.config.base
       } else {
-        let random = Math.random()
+        let random = this.getRandom()
         let range = this.getRateChange(random)
         item.value = history.history[index - 1].value + range.value
         item.random = random
