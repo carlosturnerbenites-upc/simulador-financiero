@@ -24,7 +24,7 @@
                                         <Icon type="ios-cash" slot="prepend"></Icon>
                                     </Input>
                                 </FormItem>
-                                <FormItem prop="valueToPay" :label="$t('form.valueToPay.label')">
+                                <FormItem prop="valueToPay" :label="$t('form.date.label')">
                                     <DatePicker
                                         class="d-block"
                                         type="date"
@@ -44,18 +44,18 @@
                         </Col>
                         <Col span="12">
                             <div style="width: 400px; margin: 0 auto">
-                                <canvas id="histogram" width="400" height="400"></canvas>
+                                <SimulationChart ref="simulationChart"></SimulationChart>
                             </div>
                         </Col>
                     </Row>
                     <Row>
                         <Tabs>
                             <TabPane label="Tabla">
-                                <Table :loading="loading" height="300" stripe :columns="columns" :data="data"></Table>
+                                <SimulationTable :loading="loading" :data="data"></SimulationTable>
                             </TabPane>
                             <TabPane label="Histograma de Intereses">
                                 <div style="width: 600px; margin: 0 auto">
-                                    <canvas id="history" width="400" height="400"></canvas>
+                                    <HistoryChart ref="historyChart"></HistoryChart>
                                 </div>
                             </TabPane>
                         </Tabs>
@@ -72,218 +72,43 @@
 
 <script>
 
+import SimulationChart from '@/Components/Charts/Simulation'
+import SimulationTable from '@/Components/Table'
+import HistoryChart from '@/Components/Charts/History'
 import Simulator from '@/Simulator'
 import Generator from '@/Generator'
 import Formatter from '@/Formatter'
 import Chart from 'chart.js'
+import MixinForm from '@/mixins/form'
 
 import dataDaily from '@/history.json'
 
 export default {
     name: 'app',
+    mixins: [MixinForm],
     data () {
         return {
             loading: false,
             simulator: new Simulator(),
             generator: new Generator(),
-            simulation: {
-                totalInterest: null,
-                totalInstalments: null,
-                sumInterest: null,
-                interesPromedio: null
-            },
             formatter: new Formatter(),
             nameForm: 'form',
-            form: {
-                term: 37,
-                valueToPay: 20000000,
-                interestRate: 1.35,
-                date: new Date()
-            },
-            rules: {
-                term: [
-                    { type: 'number', min: 36, message: this.$t('form.rules.term.min'), trigger: 'blur' },
-                    { type: 'number', max: 120, message: this.$t('form.rules.term.max'), trigger: 'blur' }
-                ],
-                valueToPay: [
-                    { type: 'number', min: 1000000, message: this.$t('form.rules.valueToPay.min'), trigger: 'blur' },
-                    { type: 'number', max: 5000000000, message: this.$t('form.rules.valueToPay.max'), trigger: 'blur' }
-                ]
-            },
-            columns: [
-                {
-                    title: '#',
-                    key: 'index',
-                    width: 70
-                },
-                {
-                    title: 'Interes',
-                    key: 'interes',
-                    width: 80
-                },
-                {
-                    title: 'Valor Intereses',
-                    key: 'valorIntereses'
-                },
-                {
-                    title: 'Abono a Capital',
-                    key: 'valorBase'
-                },
-                {
-                    title: 'Cuota con Interes',
-                    key: 'valorCuota'
-                },
-                {
-                    title: 'Saldo',
-                    key: 'balance'
-                }
-            ],
             data: []
         }
     },
     methods: {
-        changeDate (nValue) {
-            this.setInterestRate()
-        },
-        drawHistory () {
-            let labels = []
-            let data = dataDaily.map(item => item.value)
-
-            dataDaily.forEach(item => {
-                labels.push(item.date)
-            })
-
-            let ctx = document.getElementById('history').getContext('2d');
-
-            let options = {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Historial'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
-                }
-            }
-
-            var myLineChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                labels,
-                datasets: [{
-                    label: 'Interes',
-                    fill: false,
-                    backgroundColor: 'blue',
-                    borderColor: 'blue',
-                    borderWidth: 0.1,
-                    pointRadius: 0.1,
-                    pointHoverRadius: 0.1,
-                    data
-                }]
-                },
-                options: options
-            });
-        },
-        draw (term, payToInstalments, payToInterest) {
-            let labels = []
-            for (let index = 1; index <= term; index++) {
-              labels.push(index)
-            }
-            let ctx = document.getElementById('histogram').getContext('2d');
-
-            let options = {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Interes vs Capital'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                        display: true,
-                        labelString: 'Value'
-                        }
-                    }]
-                }
-            }
-
-            var myLineChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels,
-                    datasets: [
-                        {
-                            label: 'Couta',
-                            fill: false,
-                            backgroundColor: 'green',
-                            borderColor: 'green',
-                            borderWidth: 0.1,
-                            pointRadius: 0.1,
-                            pointHoverRadius: 0.1,
-                            data: payToInstalments
-                        },
-                        {
-                            label: 'Interes',
-                            fill: false,
-                            backgroundColor: 'red',
-                            borderColor: 'red',
-                            borderWidth: 0.1,
-                            pointRadius: 0.1,
-                            pointHoverRadius: 0.1,
-                            data: payToInterest
-                        }
-                    ]
-                },
-                options: options
-            });
-        },
+        changeDate (nValue) { this.setInterestRate() },
         setInterestRate () {
             let format = this.form.date.format()
-            console.log('format', format)
 
             let data = dataDaily.find(item => item.date === format)
-            console.log('data', data)
+
             if (!data) {
-                throw new Error('Fecha invalida')
+                $vm0.$Message.error("Fecha invalida")
+                this.form.date = new Date()
+            } else {
+                this.form.interestRate = data.value
             }
-            this.form.interestRate = data.value
         },
         validateForm(name) {
             this.$refs[this.nameForm].validate((valid) => {
@@ -330,11 +155,6 @@ export default {
 
                     let interesPromedio = sumInterest / this.form.term;
 
-                    this.simulation.totalInterest = totalInterest
-                    this.simulation.totalInstalments = totalInstalments
-                    this.simulation.sumInterest = sumInterest
-                    this.simulation.interesPromedio = interesPromedio
-
                     let data = responses.map(response => ({
                         index: response.index,
                         interes: `${response.interes} %`,
@@ -357,7 +177,7 @@ export default {
 
                     this.loading = false
 
-                    this.draw(this.form.term, payToInstalments, payToInterest)
+                    this.$refs.simulationChart.draw(this.form.term, payToInstalments, payToInterest)
                 } else {
                     this.$Message.error('Verifique los valores.');
                 }
@@ -365,7 +185,13 @@ export default {
         },
     },
     mounted () {
-        this.drawHistory()
+        this.setInterestRate()
+        this.$refs.historyChart.draw()
+    },
+    components: {
+        SimulationChart,
+        HistoryChart,
+        SimulationTable
     }
 }
 </script>
@@ -391,19 +217,10 @@ export default {
         overflow: hidden;
     }
     .layout-logo{
-        // width: 100px;
-        // height: 30px;
         background: #5b6270;
         border-radius: 3px;
-        // float: left;
-        // position: relative;
-        // top: 15px;
-        // left: 20px;
         color: white;
         font-weight: bold;
         font-size: 20px;
-    }
-    .layout-footer-center{
-        text-align: center;
     }
 </style>

@@ -6,6 +6,9 @@ const es = {
     valueToPay:{
       label: "¿Cuánto es el valor que deseas prestar? ($)",
     },
+    date:{
+      label: "¿Cuando piensa solicitar el crédito?",
+    },
     buttons: {
       calc: 'Calcular'
     },
