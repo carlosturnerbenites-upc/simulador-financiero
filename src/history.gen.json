@@ -7,91 +7,91 @@
   },
   {
     "year": 2013,
-    "value": 4.5,
+    "value": 4,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.268335287,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2013,
-    "value": 5,
+    "value": 4,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.545276333,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2013,
-    "value": 4.5,
+    "value": 4,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.750739129,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2014,
-    "value": 5,
+    "value": 4,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.053493203,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2014,
-    "value": 4.5,
+    "value": 4,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.808135163,
-    "changeRate": -0.5
+    "changeRate": 0
+  },
+  {
+    "year": 2014,
+    "value": 4,
+    "initialMonth": 7,
+    "endMonth": 9,
+    "random": 0.283448379,
+    "changeRate": 0
   },
   {
     "year": 2014,
     "value": 5,
-    "initialMonth": 7,
-    "endMonth": 9,
-    "random": 0.283448379,
-    "changeRate": 0.5
-  },
-  {
-    "year": 2014,
-    "value": 5.5,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.003191284,
-    "changeRate": 0.5
+    "changeRate": 1
   },
   {
     "year": 2015,
-    "value": 6,
+    "value": 5,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.112149767,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2015,
-    "value": 5.5,
+    "value": 5,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.745804924,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2015,
-    "value": 6,
+    "value": 5,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.357244794,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2015,
-    "value": 5.5,
+    "value": 5,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.818859789,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2016,
@@ -99,47 +99,47 @@
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.777995728,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2016,
-    "value": 4.5,
+    "value": 5,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.834311856,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2016,
-    "value": 4,
+    "value": 5,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.983042534,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2016,
-    "value": 3.5,
+    "value": 5,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.70834866,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2017,
-    "value": 4,
+    "value": 5,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.302169739,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2017,
-    "value": 4.5,
+    "value": 5,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.369170025,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2017,
@@ -147,95 +147,95 @@
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.184119177,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2017,
-    "value": 4.5,
+    "value": 5,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.858529259,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2018,
-    "value": 5,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.003313095,
-    "changeRate": 0.5
+    "changeRate": 1
   },
   {
     "year": 2018,
-    "value": 4.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.873285762,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2018,
-    "value": 4,
+    "value": 6,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.722439474,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2018,
-    "value": 4.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.058021123,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2019,
-    "value": 5,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.121726773,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2019,
-    "value": 5.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.63710772,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2019,
-    "value": 5,
+    "value": 6,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.907545693,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2019,
-    "value": 5.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.071988601,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 5,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.959398801,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 5.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.562285482,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
@@ -243,110 +243,110 @@
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.134812521,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 6.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.463184439,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 7,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.550595637,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 7.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.510374723,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 8,
+    "value": 6,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.536875281,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 8.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.469467304,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 9,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.691466666,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 8.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.751053365,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 9,
+    "value": 6,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.633961234,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2020,
-    "value": 8.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.927642702,
-    "changeRate": -0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 9,
+    "value": 6,
     "initialMonth": 1,
     "endMonth": 3,
     "random": 0.299446268,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 9.5,
+    "value": 6,
     "initialMonth": 4,
     "endMonth": 6,
     "random": 0.621856739,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 10,
+    "value": 6,
     "initialMonth": 7,
     "endMonth": 9,
     "random": 0.470273031,
-    "changeRate": 0.5
+    "changeRate": 0
   },
   {
     "year": 2021,
-    "value": 9.5,
+    "value": 6,
     "initialMonth": 10,
     "endMonth": 12,
     "random": 0.974286287,
-    "changeRate": -0.5
+    "changeRate": 0
   }
 ]

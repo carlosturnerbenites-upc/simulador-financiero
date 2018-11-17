@@ -1,9 +1,55 @@
 
 import randoms from '@/random.json'
-
+Date.prototype.addDays = function (days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
 export default class Generator {
   constructor () {
     this.indexRandom = 0
+    this.rateChange = [
+      {
+        range: [0, 0.000206270627063],
+        value: 0.75
+      },
+      {
+        range: [0.000206270626063, 0.000618811880188],
+        value: -1
+      },
+      {
+        range: [0.000618811879188, 0.001031353133314],
+        value: -0.5
+      },
+      {
+        range: [0.001031353132314, 0.003712871284129],
+        value: 1
+      },
+      {
+        range: [0.003712871283129, 0.007219471943195],
+        value: 0.5
+      },
+      {
+        range: [0.007219471942195, 0.987004950490049],
+        value: 0
+      },
+      {
+        range: [0.98700495048905, 0.995049504944495],
+        value: -0.25
+      },
+      {
+        range: [0.995049504943495, 0.999381188111812],
+        value: 0.25
+      },
+      {
+        range: [0.999381188110812, 0.999793729364937],
+        value: 2
+      },
+      {
+        range: [0.999793729363937, 0.999999999991],
+        value: 3
+      },
+    ]
     /*
     this.rateChange = [
       {
@@ -44,6 +90,7 @@ export default class Generator {
       },
     ]
     */
+   /*
     this.rateChange = [
       {
         range: [0.000000000000000, 0.700000000000000],
@@ -54,6 +101,7 @@ export default class Generator {
         value: -0.5
       },
     ]
+    */
 
     this.history = {
       config: {
@@ -352,13 +400,13 @@ export default class Generator {
     return n
   }
   getRateChange (n) {
-    console.log(n)
+    // console.log(n)
     let range = this.rateChange.find(range => {
       return n >= range.range[0] && n <= range.range[1]
     })
 
     if (range) {
-      console.log(`${n} into ${range.range[0]} - ${range.range[1]}`)
+      // console.log(`${n} into ${range.range[0]} - ${range.range[1]}`)
     }
     return range
   }
@@ -382,6 +430,51 @@ export default class Generator {
       return JSON.stringify(history.history)
     }
     return history.history
+  }
+  generateHistoryDaily (json = true) {
+    let history = Object.assign({}, this.history)
+    let curDate = new Date('2000-1-3')
+
+    let data = [{
+      value: 12,
+      date: curDate
+    }]
+
+    let days = 1000
+
+    for (let index = 0; index < days; index++) {
+      let random = this.getRandom()
+      let range = this.getRateChange(random)
+
+      curDate = curDate.addDays(1)
+      let value
+
+      if (index === 0) {
+        value = 12
+      } else {
+        value = data[index - 1].value
+      }
+
+      let change = null
+      if (range) {
+        change = range.value
+        value = value + change
+      } else {
+        console.info('not found')
+      }
+
+      let item = {
+        date: curDate.getFullYear() + "-" + curDate.getMonth() + "-" + curDate.getDate(),
+        value,
+        random,
+        change
+      }
+
+      data.push(item)
+
+    }
+
+    return data
   }
 }
 
