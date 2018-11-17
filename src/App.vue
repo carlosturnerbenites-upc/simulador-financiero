@@ -91,6 +91,8 @@ import data from '@/history.json'
 import dataGen from '@/history.gen.json'
 import Chart from 'chart.js'
 
+import dataDaily from '@/history.daily.json'
+
 const history = data.map(item => ({
     date: item.date,
     value: parseFloat(item.value.toString().replace(",", ".")),
@@ -168,10 +170,11 @@ export default {
         },
         drawHistory () {
             let labels = []
-            let data = dataGen.map(item => item.value)
+            let data = dataDaily.map(item => item.value) // dataGen
 
-            dataGen.forEach(item => {
-                labels.push(`${item.year} - ${item.initialMonth}`)
+            dataDaily.forEach(item => { // dataGen
+                // labels.push(`${item.year} - ${item.initialMonth}`)
+                labels.push(`${item.date}`)
             })
 
             let ctx = document.getElementById('history').getContext('2d');
@@ -217,6 +220,9 @@ export default {
                     fill: false,
                     backgroundColor: 'blue',
                     borderColor: 'blue',
+                    borderWidth: 0.1,
+                    pointRadius: 0.1,
+                    pointHoverRadius: 0.1,
                     data
                 }]
                 },
@@ -272,6 +278,9 @@ export default {
                             fill: false,
                             backgroundColor: 'green',
                             borderColor: 'green',
+                            borderWidth: 0.1,
+                            pointRadius: 0.1,
+                            pointHoverRadius: 0.1,
                             data: payToInstalments
                         },
                         {
@@ -279,6 +288,9 @@ export default {
                             fill: false,
                             backgroundColor: 'red',
                             borderColor: 'red',
+                            borderWidth: 0.1,
+                            pointRadius: 0.1,
+                            pointHoverRadius: 0.1,
                             data: payToInterest
                         }
                     ]

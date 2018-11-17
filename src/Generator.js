@@ -10,46 +10,70 @@ export default class Generator {
     this.indexRandom = 0
     this.rateChange = [
       {
-        range: [0, 0.000206270627063],
-        value: 0.75
-      },
-      {
-        range: [0.000206270626063, 0.000618811880188],
-        value: -1
-      },
-      {
-        range: [0.000618811879188, 0.001031353133314],
-        value: -0.5
-      },
-      {
-        range: [0.001031353132314, 0.003712871284129],
-        value: 1
-      },
-      {
-        range: [0.003712871283129, 0.007219471943195],
-        value: 0.5
-      },
-      {
-        range: [0.007219471942195, 0.987004950490049],
-        value: 0
-      },
-      {
-        range: [0.98700495048905, 0.995049504944495],
-        value: -0.25
-      },
-      {
-        range: [0.995049504943495, 0.999381188111812],
+        range: [0, 0.007386888273315],
         value: 0.25
       },
       {
-        range: [0.999381188110812, 0.999793729364937],
+        range: [0.007386888273316,0.009233610341644],
+        value: 0.5
+      },
+      {
+        range: [0.009233610341645, 0.988457987072946],
+        value: 0
+      },
+      {
+        range: [0.988457987072947, 0.999076638965836 ],
+        value: -0.25
+      },
+      {
+        range: [0.999076638965837, 1 ],
+        value: -0.5
+      },
+    ]
+    /*
+    this.rateChange = [
+      {
+        range: [0, 0.000206270627],
+        value: 0.75
+      },
+      {
+        range: [0.000206270628, 0.000618811880],
+        value: -1
+      },
+      {
+        range: [0.000618811881, 0.001031353133],
+        value: -0.5
+      },
+      {
+        range: [0.001031353134, 0.003712871284],
+        value: 1
+      },
+      {
+        range: [0.003712871285, 0.007219471943],
+        value: 0.5
+      },
+      {
+        range: [0.007219471944, 0.987004950490],
+        value: 0
+      },
+      {
+        range: [0.987004950491, 0.995049504944],
+        value: -0.25
+      },
+      {
+        range: [0.995049504945, 0.999381188111],
+        value: 0.25
+      },
+      {
+        range: [0.999381188112, 0.999793729364],
         value: 2
       },
       {
-        range: [0.999793729363937, 0.999999999991],
+        range: [0.999793729365, 1],
         value: 3
       },
     ]
+    */
     /*
     this.rateChange = [
       {
@@ -395,6 +419,7 @@ export default class Generator {
     }
   }
   getRandom() {
+    // return Math.random()
     let n = randoms[this.indexRandom]
     this.indexRandom += 1
     return n
@@ -429,15 +454,15 @@ export default class Generator {
     if (json) {
       return JSON.stringify(history.history)
     }
-    return history.history
+    return history.history1000
   }
   generateHistoryDaily (json = true) {
     let history = Object.assign({}, this.history)
-    let curDate = new Date('2000-1-3')
+    let curDate = new Date('2017-4-1')
 
     let data = [{
-      value: 12,
-      date: curDate
+      value: 3.5,
+      date: curDate.getFullYear() + "-" + curDate.getMonth() + "-" + curDate.getDate(),
     }]
 
     let days = 1000
@@ -450,7 +475,7 @@ export default class Generator {
       let value
 
       if (index === 0) {
-        value = 12
+        value = 3.5
       } else {
         value = data[index - 1].value
       }
