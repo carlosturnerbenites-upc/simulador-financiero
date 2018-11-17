@@ -46,18 +46,6 @@
                             <div style="width: 400px; margin: 0 auto">
                                 <canvas id="histogram" width="400" height="400"></canvas>
                             </div>
-                            <!-- v-if="simulation.totalInterest">
-                                Interes Total: {{this.formatter.format(simulation.totalInterest)}}
-                            </p>
-                            <p v-if="simulation.totalInstalments">
-                                Total Cuotas: {{this.formatter.format(simulation.totalInstalments)}}
-                            </p>
-                            <p v-if="simulation.sumInterest">
-                                Sumatoria de Interes: {{this.formatter.format(simulation.sumInterest)}}
-                            </p>
-                            <p v-if="simulation.interesPromedio">
-                                Tasa de Interes Promedio : {{this.formatter.format(simulation.interesPromedio)}}
-                            </p-->
                         </Col>
                     </Row>
                     <Row>
@@ -87,25 +75,14 @@
 import Simulator from '@/Simulator'
 import Generator from '@/Generator'
 import Formatter from '@/Formatter'
-import data from '@/history.json'
-import dataGen from '@/history.gen.json'
 import Chart from 'chart.js'
 
-import dataDaily from '@/history.daily.json'
-
-const history = data.map(item => ({
-    date: item.date,
-    value: parseFloat(item.value.toString().replace(",", ".")),
-    year: parseInt(item.date.split('-')[0]),
-    month: parseInt(item.date.split('-')[1]),
-    day: parseInt(item.date.split('-')[2]),
-}))
+import dataDaily from '@/history.json'
 
 export default {
     name: 'app',
     data () {
         return {
-            history,
             loading: false,
             simulator: new Simulator(),
             generator: new Generator(),
@@ -170,11 +147,10 @@ export default {
         },
         drawHistory () {
             let labels = []
-            let data = dataDaily.map(item => item.value) // dataGen
+            let data = dataDaily.map(item => item.value)
 
-            dataDaily.forEach(item => { // dataGen
-                // labels.push(`${item.year} - ${item.initialMonth}`)
-                labels.push(`${item.date}`)
+            dataDaily.forEach(item => {
+                labels.push(item.date)
             })
 
             let ctx = document.getElementById('history').getContext('2d');
@@ -299,15 +275,14 @@ export default {
             });
         },
         setInterestRate () {
-            let year = this.form.date.getFullYear()
-            let month =  this.form.date.getMonth() + 1
-            let day =  this.form.date.getDate()
+            let format = this.form.date.format()
+            console.log('format', format)
 
-            if (year > 2021 || year < 2013) {
-            throw new Error('Fecha invalida')
+            let data = dataDaily.find(item => item.date === format)
+            console.log('data', data)
+            if (!data) {
+                throw new Error('Fecha invalida')
             }
-
-            let data = dataGen.find(item => item.year === year && (month >= item.initialMonth && month <= item.endMonth))
             this.form.interestRate = data.value
         },
         validateForm(name) {
